@@ -1,9 +1,13 @@
 import './App.css';
+import { useState, useEffect, useRef } from 'react';
 import { Route, Switch } from 'react-router';
 import Homepage from './pages/homepage/homepage.component.jsx';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
+
+//
+import { auth } from './firebase/firebase.utils';
 
 // const HatsPage = () => <div>hello</div>;
 
@@ -18,9 +22,21 @@ import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.com
 // };
 
 function App() {
+  const [currentUser, setCurrentUser] = useState();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setCurrentUser({ currentUser: user });
+      // console.log(unsubcribeFromAuth);
+      console.log(`user: ${user}`);
+      console.log(currentUser);
+    });
+    return () => {};
+  }, []);
+
   return (
     <div>
-      <Header />
+      <Header currentUser={currentUser} />
       <Switch>
         <Route exact path='/' component={Homepage} />
         <Route path='/shop' component={ShopPage} />
