@@ -20,7 +20,7 @@ function Header({ currentUser }) {
         <Link className='option' to='/contact'>
           CONTACT
         </Link>
-        {currentUser ? console.log(true) : console.log(false)}
+        {/* {currentUser ? console.log(true) : console.log(false)} */}
 
         {currentUser ? (
           <div className='option' onClick={() => auth.signOut()}>
