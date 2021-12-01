@@ -1,15 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './header.style.scss';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
-import { AuthContext } from '../../Context/AuthProvider';
 
 import { auth } from '../../firebase/firebase.utils';
 
-function Header() {
-  const data = useContext(AuthContext);
-  console.log(data);
-
+function Header({ currentUser }) {
+  // console.log(currentUser);
   return (
     <div className='header'>
       <Link className='logo-container' to='/'>
@@ -23,14 +20,11 @@ function Header() {
         <Link className='option' to='/contact'>
           CONTACT
         </Link>
-        {data ? console.log(true) : console.log(false)}
+        {/* {currentUser ? console.log(true) : console.log(false)} */}
 
-        {data ? (
-          <div className='signout'>
-            <p className='signout-btn' onClick={() => auth.signOut()}>
-              SIGN OUT
-            </p>
-            <p className='signout-btn'>Hello {data.displayName}</p>
+        {currentUser ? (
+          <div className='option' onClick={() => auth.signOut()}>
+            SIGN OUT
           </div>
         ) : (
           <Link className='option' to='/signin'>

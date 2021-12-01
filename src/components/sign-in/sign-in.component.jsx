@@ -4,8 +4,7 @@ import FormInput from '../form-input/form-input.component';
 import CustomButton from '../button/custom-button.component';
 
 //
-import firebase, { auth, db } from '../../firebase/firebase.utils';
-import { addDocument } from '../../firebase/services';
+import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
 
 function SignIn() {
   const [email, setEmail] = useState('');
@@ -31,23 +30,6 @@ function SignIn() {
     }
     if (name === 'password') {
       setPassword(value);
-    }
-  };
-
-  /////////////////////// đăng nhập google
-  const provider = new firebase.auth.GoogleAuthProvider();
-  const signInWithGoogle = async () => {
-    const { additionalUserInfo, user } = await auth.signInWithPopup(provider);
-
-    // Thêm user vào document
-    if (additionalUserInfo?.isNewUser) {
-      addDocument('users', {
-        displayName: user.displayName,
-        email: user.email,
-        photoURL: user.photoURL,
-        uid: user.displayName,
-        providerId: additionalUserInfo.providerId,
-      });
     }
   };
 

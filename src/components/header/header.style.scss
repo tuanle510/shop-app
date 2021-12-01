@@ -22,13 +22,4 @@
       cursor: pointer;
     }
   }
-
-  .signout {
-    display: flex;
-    cursor: pointer;
-    &-btn {
-      margin-left: 15px;
-      text-transform: uppercase;
-    }
-  }
 }
