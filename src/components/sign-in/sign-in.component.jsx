@@ -4,7 +4,7 @@ import FormInput from '../form-input/form-input.component';
 import CustomButton from '../button/custom-button.component';
 
 //
-import firebase, { auth, db } from '../../firebase/firebase.utils';
+import firebase, { auth } from '../../firebase/firebase.utils';
 import { addDocument } from '../../firebase/services';
 
 function SignIn() {

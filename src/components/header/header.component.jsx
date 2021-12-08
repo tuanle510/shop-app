@@ -1,15 +1,22 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './header.style.scss';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
-import { AuthContext } from '../../Context/AuthProvider';
-
 import { auth } from '../../firebase/firebase.utils';
 
-function Header() {
-  const data = useContext(AuthContext);
-  console.log(data);
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentUser } from '../../redux/user/user.action';
 
+function Header() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  console.log(user);
+
+  const logOut = () => {
+    dispatch(setCurrentUser());
+    auth.signOut();
+  };
+  // console.log(user);
   return (
     <div className='header'>
       <Link className='logo-container' to='/'>
@@ -23,14 +30,11 @@ function Header() {
         <Link className='option' to='/contact'>
           CONTACT
         </Link>
-        {data ? console.log(true) : console.log(false)}
+        {user.currentUser != null ? console.log(true) : console.log(false)}
 
-        {data ? (
-          <div className='signout'>
-            <p className='signout-btn' onClick={() => auth.signOut()}>
-              SIGN OUT
-            </p>
-            <p className='signout-btn'>Hello {data.displayName}</p>
+        {user.currentUser ? (
+          <div className='option' onClick={logOut}>
+            LOG OUT
           </div>
         ) : (
           <Link className='option' to='/signin'>
