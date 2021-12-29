@@ -11,28 +11,28 @@ function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // console.log(email, password);
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   // console.log(email, password);
 
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      setEmail('');
-      setPassword('');
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //   try {
+  //     await auth.signInWithEmailAndPassword(email, password);
+  //     setEmail('');
+  //     setPassword('');
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const handleChange = (e) => {
-    const { value, name } = e.target;
-    if (name === 'email') {
-      setEmail(value);
-    }
-    if (name === 'password') {
-      setPassword(value);
-    }
-  };
+  // const handleChange = (e) => {
+  //   const { value, name } = e.target;
+  //   if (name === 'email') {
+  //     setEmail(value);
+  //   }
+  //   if (name === 'password') {
+  //     setPassword(value);
+  //   }
+  // };
 
   /////////////////////// đăng nhập google
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -56,13 +56,12 @@ function SignIn() {
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={() => console.log('hello')}>
         <FormInput
           type='email'
           name='email'
           label='email'
           value={email}
-          handleChange={handleChange}
           required
         />
         <FormInput
@@ -70,7 +69,6 @@ function SignIn() {
           name='password'
           label='password'
           value={password}
-          handleChange={handleChange}
           required
         />
         <div className='buttons'>
