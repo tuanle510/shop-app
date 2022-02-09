@@ -3,7 +3,7 @@ import { ReactComponent as BagIcon } from '../../assets/shopping-bag.svg';
 import './cart-icon.style.scss';
 
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 function CartIcon() {
   const dispatch = useDispatch();

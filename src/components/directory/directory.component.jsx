@@ -8,7 +8,6 @@ function Directory() {
   return (
     <div className='directory-menu'>
       {data.map(({ id, ...ortherSectionProps }) => {
-        // console.log({ ...ortherSectionProps });
         return <MenuItem key={id} {...ortherSectionProps} />;
       })}
     </div>

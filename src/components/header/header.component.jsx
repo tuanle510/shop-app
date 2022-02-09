@@ -13,13 +13,12 @@ function Header() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const hidden = useSelector((state) => state.cart.hidden);
-  console.log(hidden);
 
   const logOut = () => {
     dispatch(setCurrentUser());
     auth.signOut();
   };
-  // console.log(user);
+
   return (
     <div className='header'>
       <Link className='logo-container' to='/'>
@@ -33,7 +32,6 @@ function Header() {
         <Link className='option' to='/contact'>
           CONTACT
         </Link>
-        {/* {user.currentUser != null ? console.log(true) : console.log(false)} */}
 
         {user.currentUser ? (
           <div className='option' onClick={logOut}>
