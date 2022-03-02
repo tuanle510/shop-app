@@ -9,6 +9,7 @@ import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import { setCurrentUser } from './redux/user/user.action';
+import Checkout from './pages/checkout/checkout.component';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='shop' element={<ShopPage />} />
+        <Route path='checkout' element={<Checkout />} />
         <Route
           path='signin'
           element={user ? <Navigate to='/' replace /> : <SignInAndSignUp />}
